@@ -20,6 +20,10 @@ This app has two main parts :
 ### Real-time synchronization
 When an item is added/modified/checked/deleted by a client, any other active client will show the change instantly
 
+## Language
+The app is currently only available in French, but there are very few static texts so it should be usable as-is for non-speakers.
+Feel free to ask for translations if you like the app, i'd be glad to add them.
+
 ## Installation
 ### Requirements
 * A server machine (any computer that stays powered on and can be accessed through the internet), any OS will do
