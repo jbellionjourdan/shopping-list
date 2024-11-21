@@ -1,0 +1,14 @@
+.small-text {
+  font-size: 0.5rem;
+}
+
+ul {
+  max-height: calc(300px - 6.5rem);
+  overflow: hidden;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

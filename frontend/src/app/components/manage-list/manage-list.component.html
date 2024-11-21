@@ -1,0 +1,34 @@
+@if (_list) {
+  <p-card class="p-card-full-height">
+    <ng-template pTemplate="header">
+      <div class="header-wrapper">
+        <p-inplace #inplace>
+          <ng-template pTemplate="display">
+            <span class="title-wrapper ripple-clear" pRipple>
+              <h6>{{ _list.name }}</h6>
+              <i class="pi pi-pencil m-l-m ripple-clear" aria-hidden="true"></i>
+            </span>
+          </ng-template>
+          <ng-template pTemplate="content">
+            @if (formGroupEditName) {
+              <form [formGroup]="formGroupEditName" (ngSubmit)="editName()" class="m-r-s">
+                <div class="p-inputgroup">
+                  <input type="text" pInputText formControlName="name"/>
+                  <button pButton type="submit" class="button-min" pRipple>
+                    <i class="pi pi-check" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </form>
+            }
+          </ng-template>
+        </p-inplace>
+        <p-button icon="pi pi-trash ripple-red" [text]="true" [rounded]="true" aria-hidden="true"
+                  (click)="delete()" severity="danger"></p-button>
+      </div>
+      <spl-progress-bar [shown]="loading"/>
+    </ng-template>
+    <spl-list-preview [listId]="_list.id"></spl-list-preview>
+  </p-card>
+  <p-button class="details-button" routerLink="/lists/{{_list.id}}"
+            icon="pi pi-arrow-right"></p-button>
+}

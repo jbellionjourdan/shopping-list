@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+    <changeSet id="2022-16-01_init_item_table" author="jbn">
+        <createTable tableName="t_itm_item">
+            <column name="itmid" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="itmva_name" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="itmbo_checked" type="boolean" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2022-10-06_init_list_table" author="jbn">
+        <createTable tableName="t_lst_list">
+            <column name="lstid" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="lstva_name" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2022-02-06_migrate_initial_list" author="jbn">
+        <insert tableName="t_lst_list">
+            <column name="lstid" valueNumeric="1"/>
+            <column name="lstva_name" value="Courses"/>
+        </insert>
+        <addColumn tableName="t_itm_item">
+            <column name="lstid" type="bigint">
+                <constraints foreignKeyName="fk_itm>lst"
+                             referencedTableName="t_lst_list"
+                             referencedColumnNames="lstid"
+                />
+            </column>
+        </addColumn>
+        <update tableName="t_itm_item">
+            <column name="lstid" valueNumeric="1"/>
+        </update>
+    </changeSet>
+    <changeSet id="2023-07-26_init_categories_table" author="jbn">
+        <createTable tableName="t_cat_category">
+            <column name="catid" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="catva_name" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2023-07-26_migrate_initial_category" author="jbn">
+        <insert tableName="t_cat_category">
+            <column name="catid" valueNumeric="1"/>
+            <column name="catva_name" value="Autres"/>
+        </insert>
+        <addColumn tableName="t_itm_item">
+            <column name="catid" type="bigint">
+                <constraints foreignKeyName="fk_itm>cat"
+                             referencedTableName="t_cat_category"
+                             referencedColumnNames="catid"
+                />
+            </column>
+        </addColumn>
+        <update tableName="t_itm_item">
+            <column name="catid" valueNumeric="1"/>
+        </update>
+        <addNotNullConstraint tableName="t_itm_item" columnName="lstid" columnDataType="bigint"/>
+        <addNotNullConstraint tableName="t_itm_item" columnName="catid" columnDataType="bigint"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,15 @@
+.wrapper {
+  height: 100%;
+}
+
+.lists-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.list {
+  height: 300px;
+  flex: 40% 1 1;
+}

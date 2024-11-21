@@ -1,0 +1,3 @@
+@if (itemsStore.socketStatus(); as status) {
+  <div class="status-indicator" [ngStyle]="{'background-color': getColor(status)}"></div>
+}

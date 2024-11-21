@@ -1,0 +1,71 @@
+<div class="pos-sticky">
+  <div class="header-row">
+    <h1>Catégories</h1>
+    <button pButton pRipple routerLink="/" text="true">Retour</button>
+  </div>
+  <form [formGroup]="createForm" class="creation-form p-inputgroup" (ngSubmit)="createCategory()">
+    <input pInputText formControlName="name" placeholder="Nouvelle catégorie..."/>
+    <button pButton type="submit" [disabled]="createForm.invalid" pRipple>Ajouter</button>
+  </form>
+  <spl-progress-bar [shown]="createLoading"/>
+</div>
+
+@if (categories()|sortCategories; as categories) {
+  <p-table
+    [value]="categories"
+    dataKey="id"
+    editMode="row">
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="name-column">Nom de la catégorie</th>
+        <th class="actions-column">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-untypedCategory let-editing="editing">
+      @if (typeCategory(untypedCategory); as category) {
+        <tr [formGroup]="category.formGroup" [pEditableRow]="category">
+          <td class="name-column">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText formControlName="name"/>
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{ category.name }}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td class="actions-column">
+            <div class="flex align-items-center justify-content-center gap-2">
+              @if (!editing) {
+                <p-button type="button" pInitEditableRow icon="pi pi-pencil" [text]="true" [rounded]="true"
+                          [disabled]="category.loading"/>
+              }
+              @if (!editing && category.id !== 1) {
+                <p-button (click)="deleteCategory(category)" type="button" icon="pi pi-trash" [text]="true"
+                          [rounded]="true" severity="danger" [disabled]="category.loading"/>
+              }
+              @if (editing) {
+                <p-button type="submit" (click)="updateCategory(category)" pSaveEditableRow
+                          icon="pi pi-check" [disabled]="category.formGroup.invalid || category.formGroup.pristine"
+                          class="mr-2" [text]="true" [rounded]="true" severity="success"/>
+              }
+              @if (editing) {
+                <p-button type="button" pCancelEditableRow icon="pi pi-times" severity="danger" [text]="true"
+                          (click)="category.formGroup.reset(category)" [rounded]="true"/>
+              }
+            </div>
+          </td>
+        </tr>
+      }
+    </ng-template>
+  </p-table>
+}
+
+<p-confirmDialog
+  acceptButtonStyleClass="p-button-danger"
+  acceptLabel="Supprimer"
+  rejectLabel="Annuler"
+  header="Suppression"
+  icon="pi pi-exclamation-triangle"
+  acceptIcon="pi pi-trash"
+></p-confirmDialog>

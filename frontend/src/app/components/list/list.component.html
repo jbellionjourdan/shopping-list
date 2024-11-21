@@ -1,0 +1,43 @@
+@if (listId; as listId) {
+  <div class="pos-sticky w-100">
+    <div class="header-row">
+      @if (list?.(); as list) {
+        <h1>Liste {{ list.name }}</h1>
+      } @else {
+        <p-skeleton width="60vw"/>
+      }
+      <button pButton pRipple routerLink="/" text="true">Retour</button>
+    </div>
+    <form [formGroup]="createForm" class="creation-form input-group" (ngSubmit)="addItem()">
+      <p-dropdown
+        [options]="categoriesStore.categories()|sortCategories"
+        [loading]="!categoriesStore.categories()"
+        formControlName="category"
+        placeholder="Catégorie..."
+        optionLabel="name"
+      ></p-dropdown>
+      <input pInputText formControlName="name" placeholder="Il manque..."/>
+      <p-button type="submit" [disabled]="createForm.invalid">Ajouter</p-button>
+    </form>
+    <spl-progress-bar [shown]="addItemLoading"/>
+  </div>
+
+  @if (itemsStore.getItemsSignalForList(listId)(); as categorizedItems) {
+    @for (category of categorizedItems|sortCategories; track category.id) {
+      <spl-categorized-items [categorizedItems]="category" [listId]="listId"/>
+    }
+  } @else {
+    <p-fieldset legend="">
+      <ng-template pTemplate="header">
+        <p-skeleton width="30vw"/>
+      </ng-template>
+      <div class="loading-container">
+        <p-skeleton width="50%" height="0.7rem" class="m-b-s"/>
+        <p-skeleton width="40%" height="0.7rem" class="m-b-s"/>
+        <p-skeleton width="70%" height="0.7rem" class="m-b-s"/>
+        <p-skeleton width="55%" height="0.7rem" class="m-b-s"/>
+      </div>
+    </p-fieldset>
+  }
+}
+

@@ -1,0 +1,33 @@
+<div cdkVirtualScrollingElement class="wrapper">
+  <div class="pos-sticky">
+    <form [formGroup]="createForm" class="creation-form input-group p-inputgroup" (ngSubmit)="addList()">
+      <button pButton routerLink="/categories" pRipple type="button">Catégories</button>
+      <input pInputText formControlName="name" placeholder="Nouvelle liste..."/>
+      <p-button type="submit" [disabled]="createForm.invalid || createLoading">Ajouter</p-button>
+    </form>
+    <spl-progress-bar [shown]="createLoading"/>
+  </div>
+
+  <cdk-virtual-scroll-viewport>
+    <div class="lists-wrapper">
+      @if (!listsLoading) {
+        <div *cdkVirtualFor="let list of listStore.lists()" class="list">
+          <spl-manage-list [list]="list"></spl-manage-list>
+        </div>
+      } @else {
+        @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+          <p-skeleton class="list" height="300px"/>
+        }
+      }
+    </div>
+  </cdk-virtual-scroll-viewport>
+</div>
+
+<p-confirmDialog
+  acceptButtonStyleClass="p-button-danger"
+  acceptLabel="Supprimer"
+  rejectLabel="Annuler"
+  header="Suppression"
+  icon="pi pi-exclamation-triangle"
+  acceptIcon="pi pi-trash"
+></p-confirmDialog>

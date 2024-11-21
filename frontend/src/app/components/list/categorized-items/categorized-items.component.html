@@ -1,0 +1,72 @@
+<div class="m-t-m">
+  @if (_categorizedItems; as categorizedItems) {
+    <p-fieldset toggleable="true" [collapsed]="completed">
+      <ng-template pTemplate="header">
+        <span [ngClass]="{'text-strike': completed}">
+          {{ categorizedItems.name }}
+        </span>
+      </ng-template>
+      <div class="items-list">
+        @for (item of categorizedItems.items|sortItems; track item.id) {
+          <div class="list-item">
+            <div class="box-and-label-container" [formGroup]="item.formGroup">
+              <p-checkbox
+                formControlName="checked"
+                [binary]="true"
+                inputId="checkbox-{{item.id}}"
+                (onChange)="updateItem(item)"
+                [disabled]="item.loading"
+              ></p-checkbox>
+              <p-inplace preventClick="true" #inplace>
+                <ng-template pTemplate="display">
+                  <label for="checkbox-{{item.id}}" class="m-l-m"
+                         [ngClass]="{'text-strike': item.checked}">{{ item.name }}</label>
+                </ng-template>
+                <ng-template pTemplate="content">
+                  <form (ngSubmit)="updateItem(item, inplace)" [formGroup]="item.formGroup" class="m-l-s">
+                    <div class="p-inputgroup">
+                      <input type="text" pInputText formControlName="name"/>
+                      <button pButton type="submit" class="button-min" pRipple [disabled]="item.loading">
+                        <i class="pi pi-check" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </form>
+                </ng-template>
+              </p-inplace>
+
+            </div>
+            <div class="buttons-container">
+              @if (!inplace.active) {
+                <p-button
+                  icon="pi pi-pencil"
+                  [text]="true"
+                  [rounded]="true"
+                  [disabled]="item.loading"
+                  (click)="inplace.activate()"
+                />
+              }
+              @if (inplace.active) {
+                <p-button
+                  icon="pi pi-times"
+                  [text]="true"
+                  [rounded]="true"
+                  [disabled]="item.loading"
+                  (click)="inplace.active = false"
+                  severity="danger"
+                />
+              }
+              <p-button
+                icon="pi pi-trash"
+                [text]="true"
+                [rounded]="true"
+                [disabled]="item.loading"
+                (click)="deleteItem(item)"
+                severity="danger"
+              />
+            </div>
+          </div>
+        }
+      </div>
+    </p-fieldset>
+  }
+</div>

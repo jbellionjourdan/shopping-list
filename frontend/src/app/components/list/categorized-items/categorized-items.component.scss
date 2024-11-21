@@ -1,0 +1,24 @@
+.list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &:not(:last-child) {
+    border-bottom: 0.5px solid #666;
+  }
+
+  &:not(:first-child) {
+    margin-top: 0.7rem;
+  }
+}
+
+.box-and-label-container {
+  display: flex;
+  flex: 3;
+}
+
+.buttons-container {
+  display: flex;
+  flex: 1;
+}
