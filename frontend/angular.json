@@ -62,6 +62,11 @@
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeng/resources/themes/lara-dark-blue/theme.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "scripts": [],
             "serviceWorker": "ngsw-config.json",
             "browser": "src/main.ts"
@@ -132,6 +137,11 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "scripts": []
           }
         }

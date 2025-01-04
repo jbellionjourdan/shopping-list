@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {ItemsStore} from "../../../stores/items.store";
+import {ItemsStore} from "../../stores/items.store";
 import {NgStyle} from "@angular/common";
 
 @Component({

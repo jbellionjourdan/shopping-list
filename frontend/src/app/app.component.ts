@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {PrimeNGConfig} from 'primeng/api';
 import {RouterOutlet} from "@angular/router";
 import {RippleModule} from 'primeng/ripple';
-import {WebsocketStatusComponent} from "./components/shared/websocket-status/websocket-status.component";
+import {WebsocketStatusComponent} from "./components/websocket-status/websocket-status.component";
 
 @Component({
   selector: 'spl-root',
