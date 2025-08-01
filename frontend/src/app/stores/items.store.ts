@@ -1,7 +1,7 @@
 import {computed, DestroyRef, inject, Injectable, signal, Signal} from "@angular/core";
 import {ItemService} from "../services/item.service";
 import {CategorizedItemsModel, CategoryModel} from "../models/category.model";
-import {Observable, of, retry, tap} from "rxjs";
+import {merge, Observable, of, retry, tap} from "rxjs";
 import {CreateItemModel, ItemModel} from "../models/item.model";
 import {webSocket} from "rxjs/webSocket";
 import {WebSocketUtils} from "../utils/web-socket.utils";
@@ -19,6 +19,7 @@ export class ItemsStore {
   private readonly clientConfig = inject(ClientConfig);
 
   private readonly _socketStatus = signal<WebSocketStatus | null>(null);
+  private lastSync?: Date;
 
   get socketStatus() {
     return this._socketStatus.asReadonly();
@@ -35,11 +36,12 @@ export class ItemsStore {
 
     return existingValue ? of(existingValue) : this.itemsService.getItemsForList(listId).pipe(
       tap(loaded => this.listItems.update(
-        catItems => ({
-          ...catItems,
-          [listId]: loaded
-        })
-      ))
+          catItems => ({
+            ...catItems,
+            [listId]: loaded
+          })
+        )
+      )
     );
   }
 
@@ -74,6 +76,7 @@ export class ItemsStore {
   }
 
   private handleWebSocket(): void {
+    this.lastSync = new Date();
     if (this._socketStatus() && this._socketStatus() !== 'disconnected') {
       return;
     }
@@ -88,7 +91,10 @@ export class ItemsStore {
     }).pipe(
       takeUntilDestroyed(this.destroyRef),
       tap({
-        error: () => this._socketStatus.set('retrying')
+        error: () => {
+          this._socketStatus.set('retrying');
+          this.refreshLists();
+        }
       }),
       retry({
         delay: 5000,
@@ -100,6 +106,16 @@ export class ItemsStore {
       error: () => this._socketStatus.set('disconnected'),
       complete: () => this._socketStatus.set('disconnected')
     });
+  }
+
+  /**
+   * Reload whole lists from backend if websocket has errored and last sync is older than 10s
+   * Useful on smartphones where the websocket hangs if the phone goes to sleep
+   * @private
+   */
+  private refreshLists(): void {
+    if (this.lastSync && (new Date().getTime() - this.lastSync.getTime()) > 10000)
+      merge(Object.keys(this.listItems()).map(Number).map(listId => this.loadItemsForList(listId))).subscribe();
   }
 
   private handleWebSocketMessage(message: ItemWebsocketMessage): void {
