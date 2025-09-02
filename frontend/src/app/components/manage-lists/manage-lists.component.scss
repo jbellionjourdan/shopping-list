@@ -1,7 +1,7 @@
-@import "variables";
+@use "variables" as vars;
 
 .wrapper {
-  height: calc(100vh - 2 * $global-padding);
+  height: calc(100vh - 2 * vars.$global-padding);
 }
 
 .lists-wrapper {

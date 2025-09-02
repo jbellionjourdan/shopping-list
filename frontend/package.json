@@ -1,6 +1,6 @@
 {
   "name": "shopping-list",
-  "version": "2.0.4",
+  "version": "3.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --disable-host-check --proxy-config proxy.conf.json",
@@ -10,29 +10,30 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^18.2.8",
-    "@angular/cdk": "^18.2.9",
-    "@angular/common": "^18.2.8",
-    "@angular/compiler": "^18.2.8",
-    "@angular/core": "^18.2.8",
-    "@angular/forms": "^18.2.8",
-    "@angular/platform-browser": "^18.2.8",
-    "@angular/platform-browser-dynamic": "^18.2.8",
-    "@angular/pwa": "^18.2.9",
-    "@angular/router": "^18.2.8",
-    "@angular/service-worker": "^18.2.8",
+    "@angular/animations": "^19.2.14",
+    "@angular/cdk": "^19.2.19",
+    "@angular/common": "^19.2.14",
+    "@angular/compiler": "^19.2.14",
+    "@angular/core": "^19.2.14",
+    "@angular/forms": "^19.2.14",
+    "@angular/platform-browser": "^19.2.14",
+    "@angular/platform-browser-dynamic": "^19.2.14",
+    "@angular/pwa": "^19.2.15",
+    "@angular/router": "^19.2.14",
+    "@angular/service-worker": "^19.2.14",
+    "@primeng/themes": "^19.1.4",
     "primeicons": "^7.0.0",
-    "primeng": "^17.18.11",
+    "primeng": "^19.1.4",
     "rxjs": "^7.8.1",
     "tslib": "^2.8.0",
-    "zone.js": "~0.14.10"
+    "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^18.2.9",
-    "@angular/cli": "^18.2.9",
-    "@angular/compiler-cli": "^18.2.8",
-    "@types/node": "^18.17.1",
-    "typescript": "~5.4.5"
+    "@angular-devkit/build-angular": "^19.2.15",
+    "@angular/cli": "^19.2.15",
+    "@angular/compiler-cli": "^19.2.14",
+    "@types/node": "20.16.0",
+    "typescript": "~5.8.3"
   },
   "packageManager": "yarn@4.5.1"
 }

@@ -11,7 +11,7 @@ import {ItemsStore} from "../../../stores/items.store";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {Inplace, InplaceModule} from "primeng/inplace";
 import {InputTextModule} from "primeng/inputtext";
-import {Ripple} from "primeng/ripple";
+import {InputGroup} from "primeng/inputgroup";
 
 type ItemWithFormGroup = ItemModel & { formGroup: FormGroup<ItemFormModel>, loading: boolean };
 type CategorizedItemsWithFormGroups = Omit<CategorizedItemsModel, 'items'> & { items: ItemWithFormGroup[] };
@@ -21,8 +21,7 @@ type CategorizedItemsWithFormGroups = Omit<CategorizedItemsModel, 'items'> & { i
   templateUrl: './categorized-items.component.html',
   styleUrls: ['./categorized-items.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [FieldsetModule, CheckboxModule, FormsModule, NgClass, Button, SortItemsPipe, InplaceModule, InputTextModule, ReactiveFormsModule, Ripple]
+  imports: [FieldsetModule, CheckboxModule, FormsModule, NgClass, Button, SortItemsPipe, InplaceModule, InputTextModule, ReactiveFormsModule, InputGroup]
 })
 export class CategorizedItemsComponent {
 

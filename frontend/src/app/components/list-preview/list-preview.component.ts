@@ -8,12 +8,11 @@ import {ItemsStore} from "../../stores/items.store";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
-  selector: 'spl-list-preview',
-  templateUrl: './list-preview.component.html',
-  styleUrls: ['./list-preview.component.scss'],
-  standalone: true,
-  //changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [SkeletonModule, NgClass, SortItemsPipe, SortCategoriesPipe]
+    selector: 'spl-list-preview',
+    templateUrl: './list-preview.component.html',
+    styleUrls: ['./list-preview.component.scss'],
+    //changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [SkeletonModule, NgClass, SortItemsPipe, SortCategoriesPipe]
 })
 export class ListPreviewComponent {
 

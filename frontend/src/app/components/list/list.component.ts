@@ -16,13 +16,14 @@ import {ProgressBarComponent} from "../shared/progress-bar/progress-bar.componen
 import {CategoriesStore} from "../../stores/categories.store";
 import {SkeletonModule} from "primeng/skeleton";
 import {FieldsetModule} from "primeng/fieldset";
+import {InputGroup} from "primeng/inputgroup";
+import {Select} from "primeng/select";
 
 @Component({
   selector: 'spl-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, DropdownModule, InputTextModule, RippleModule, CategorizedItemsComponent, SortCategoriesPipe, RouterLink, ButtonModule, ProgressBarComponent, SkeletonModule, FieldsetModule]
+  imports: [FormsModule, ReactiveFormsModule, DropdownModule, InputTextModule, RippleModule, CategorizedItemsComponent, SortCategoriesPipe, RouterLink, ButtonModule, ProgressBarComponent, SkeletonModule, FieldsetModule, InputGroup, Select]
 })
 export class ListComponent implements OnInit {
 
@@ -65,8 +66,6 @@ export class ListComponent implements OnInit {
     ).subscribe();
 
     this.list = this.listsStore.getListSignalById(this.listId);
-
-    const truc = true;
   }
 
   addItem() {

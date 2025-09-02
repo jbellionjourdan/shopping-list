@@ -7,7 +7,7 @@ import {
   FixedSizeVirtualScrollStrategy,
   VIRTUAL_SCROLL_STRATEGY
 } from '@angular/cdk/scrolling';
-import {ButtonDirective} from 'primeng/button';
+import {Button} from 'primeng/button';
 import {RouterLink} from '@angular/router';
 import {RippleModule} from 'primeng/ripple';
 import {InputTextModule} from 'primeng/inputtext';
@@ -19,6 +19,8 @@ import {SkeletonModule} from "primeng/skeleton";
 import {ProgressBarModule} from "primeng/progressbar";
 import {ProgressBarComponent} from "../shared/progress-bar/progress-bar.component";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {InputGroup} from "primeng/inputgroup";
+import {InputGroupAddon} from "primeng/inputgroupaddon";
 
 export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
   constructor() {
@@ -31,12 +33,10 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
   templateUrl: './manage-lists.component.html',
   styleUrls: ['./manage-lists.component.scss'],
   providers: [{provide: VIRTUAL_SCROLL_STRATEGY, useClass: CustomVirtualScrollStrategy}, ConfirmationService],
-  standalone: true,
   imports: [
     CdkVirtualScrollableElement,
     FormsModule,
     ReactiveFormsModule,
-    ButtonDirective,
     RouterLink,
     RippleModule,
     InputTextModule,
@@ -47,6 +47,9 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
     SkeletonModule,
     ProgressBarModule,
     ProgressBarComponent,
+    Button,
+    InputGroup,
+    InputGroupAddon,
   ]
 })
 export class ManageListsComponent implements OnInit {

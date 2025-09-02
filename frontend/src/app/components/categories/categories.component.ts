@@ -3,7 +3,7 @@ import {CategoryFormModel, CategoryModel} from "../../models/category.model";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ConfirmationService, PrimeTemplate} from "primeng/api";
 import {InputTextModule} from 'primeng/inputtext';
-import {ButtonDirective} from 'primeng/button';
+import {Button, ButtonDirective} from 'primeng/button';
 import {RippleModule} from 'primeng/ripple';
 import {TableModule} from 'primeng/table';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
@@ -12,6 +12,7 @@ import {RouterLink} from "@angular/router";
 import {CategoriesStore} from "../../stores/categories.store";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {ProgressBarComponent} from "../shared/progress-bar/progress-bar.component";
+import {InputGroup} from "primeng/inputgroup";
 
 type CategoryWithFormGroup = CategoryModel & { formGroup: FormGroup<CategoryFormModel>, loading: boolean };
 
@@ -19,8 +20,7 @@ type CategoryWithFormGroup = CategoryModel & { formGroup: FormGroup<CategoryForm
   selector: 'spl-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss'],
-  standalone: true,
-  imports: [ReactiveFormsModule, InputTextModule, ButtonDirective, RippleModule, TableModule, PrimeTemplate, ConfirmDialogModule, SortCategoriesPipe, RouterLink, ProgressBarComponent],
+  imports: [ReactiveFormsModule, InputTextModule, ButtonDirective, RippleModule, TableModule, PrimeTemplate, ConfirmDialogModule, SortCategoriesPipe, RouterLink, ProgressBarComponent, Button, InputGroup],
   providers: [ConfirmationService]
 })
 export class CategoriesComponent implements OnInit {

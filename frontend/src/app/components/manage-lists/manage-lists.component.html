@@ -1,9 +1,15 @@
 <div cdkVirtualScrollingElement class="wrapper">
   <div class="pos-sticky">
-    <form [formGroup]="createForm" class="creation-form input-group p-inputgroup" (ngSubmit)="addList()">
-      <button pButton routerLink="/categories" pRipple type="button">Catégories</button>
-      <input pInputText formControlName="name" placeholder="Nouvelle liste..."/>
-      <p-button type="submit" [disabled]="createForm.invalid || createLoading">Ajouter</p-button>
+    <form [formGroup]="createForm" (ngSubmit)="addList()">
+      <p-input-group>
+        <p-inputgroup-addon>
+          <p-button routerLink="/categories" type="button">Catégories</p-button>
+        </p-inputgroup-addon>
+        <input pInputText formControlName="name" placeholder="Nouvelle liste..."/>
+        <p-inputgroup-addon>
+          <p-button type="submit" [disabled]="createForm.invalid || createLoading">Ajouter</p-button>
+        </p-inputgroup-addon>
+      </p-input-group>
     </form>
     <spl-progress-bar [shown]="createLoading"/>
   </div>

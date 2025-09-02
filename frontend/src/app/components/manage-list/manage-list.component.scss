@@ -1,25 +1,8 @@
-.header-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.title-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-i {
-  cursor: pointer;
-}
-
 .details-button {
   position: relative;
   float: right;
-  right: 0.5em;
-  bottom: 3.5em;
+  right: var(--p-card-body-padding);
+  bottom: calc(var(--p-card-body-padding) + 2 * var(--p-button-padding-y) + var(--p-icon-size));
 }
 
 h6 {

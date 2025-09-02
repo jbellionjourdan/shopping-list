@@ -19,17 +19,17 @@
               ></p-checkbox>
               <p-inplace preventClick="true" #inplace>
                 <ng-template pTemplate="display">
-                  <label for="checkbox-{{item.id}}" class="m-l-m"
+                  <label for="checkbox-{{item.id}}" class="m-l-m pointer"
                          [ngClass]="{'text-strike': item.checked}">{{ item.name }}</label>
                 </ng-template>
                 <ng-template pTemplate="content">
                   <form (ngSubmit)="updateItem(item, inplace)" [formGroup]="item.formGroup" class="m-l-s">
-                    <div class="p-inputgroup">
+                    <p-inputgroup>
                       <input type="text" pInputText formControlName="name"/>
-                      <button pButton type="submit" class="button-min" pRipple [disabled]="item.loading">
+                      <p-button type="submit" [disabled]="item.loading">
                         <i class="pi pi-check" aria-hidden="true"></i>
-                      </button>
-                    </div>
+                      </p-button>
+                    </p-inputgroup>
                   </form>
                 </ng-template>
               </p-inplace>
@@ -51,7 +51,7 @@
                   [text]="true"
                   [rounded]="true"
                   [disabled]="item.loading"
-                  (click)="inplace.active = false"
+                  (click)="inplace.deactivate()"
                   severity="danger"
                 />
               }

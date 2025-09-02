@@ -6,20 +6,20 @@ import {Inplace, InplaceModule} from 'primeng/inplace';
 import {CardModule} from 'primeng/card';
 import {RippleModule} from 'primeng/ripple';
 import {InputTextModule} from 'primeng/inputtext';
-import {ButtonDirective} from 'primeng/button';
+import {Button} from 'primeng/button';
 import {ListPreviewComponent} from '../list-preview/list-preview.component';
 import {RouterLink} from '@angular/router';
 import {ListsStore} from "../../stores/lists.store";
 import {ProgressBarComponent} from "../shared/progress-bar/progress-bar.component";
+import {InputGroup} from "primeng/inputgroup";
 
 @Component({
   selector: 'spl-manage-list',
   templateUrl: './manage-list.component.html',
   styleUrls: ['./manage-list.component.scss'],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CardModule, PrimeTemplate, InplaceModule, RippleModule, FormsModule, ReactiveFormsModule, InputTextModule,
-    ButtonDirective, ListPreviewComponent, RouterLink, ProgressBarComponent],
+    ListPreviewComponent, RouterLink, ProgressBarComponent, Button, InputGroup]
 })
 export class ManageListComponent {
 

@@ -1,11 +1,8 @@
 import {enableProdMode, importProvidersFrom} from '@angular/core';
-
-
 import {environment} from './environments/environment';
 import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {APIInterceptor} from './app/common/api.interceptor';
 import {bootstrapApplication, BrowserModule} from '@angular/platform-browser';
-import {provideAnimations} from '@angular/platform-browser/animations';
 import {provideServiceWorker, ServiceWorkerModule} from '@angular/service-worker';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {ScrollingModule} from '@angular/cdk/scrolling';
@@ -20,6 +17,9 @@ import {TableModule} from 'primeng/table';
 import {AppComponent} from './app/app.component';
 import {RouterModule} from "@angular/router";
 import routes from "./app/routes";
+import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
+import {providePrimeNG} from "primeng/config";
+import {PrimeNgPreset} from "./primeng-theme";
 
 if (environment.production) {
   enableProdMode();
@@ -38,9 +38,16 @@ bootstrapApplication(AppComponent, {
       }), SelectButtonModule, ScrollingModule, CardModule, SkeletonModule, ConfirmDialogModule, InplaceModule, MessageModule, FieldsetModule, DropdownModule, TableModule),
     {provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true},
     provideHttpClient(withInterceptorsFromDi()),
-    provideAnimations(), provideServiceWorker('ngsw-worker.js', {
+    provideServiceWorker('ngsw-worker.js', {
       enabled: true,
       registrationStrategy: 'registerWhenStable:30000'
+    }),
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: PrimeNgPreset,
+        options: {}
+      }
     }),
   ]
 })

@@ -1,23 +1,26 @@
 @if (listId; as listId) {
-  <div class="pos-sticky w-100">
+  <div class="pos-sticky">
     <div class="header-row">
       @if (list?.(); as list) {
         <h1>Liste {{ list.name }}</h1>
       } @else {
         <p-skeleton width="60vw"/>
       }
-      <button pButton pRipple routerLink="/" text="true">Retour</button>
+      <p-button routerLink="/" text="true">Retour</p-button>
     </div>
-    <form [formGroup]="createForm" class="creation-form input-group" (ngSubmit)="addItem()">
-      <p-dropdown
-        [options]="categoriesStore.categories()|sortCategories"
-        [loading]="!categoriesStore.categories()"
-        formControlName="category"
-        placeholder="Catégorie..."
-        optionLabel="name"
-      ></p-dropdown>
-      <input pInputText formControlName="name" placeholder="Il manque..."/>
-      <p-button type="submit" [disabled]="createForm.invalid">Ajouter</p-button>
+    <form [formGroup]="createForm" (ngSubmit)="addItem()">
+      <p-inputgroup>
+        <p-select
+          [options]="categoriesStore.categories()|sortCategories"
+          [loading]="!categoriesStore.categories()"
+          formControlName="category"
+          placeholder="Catégorie..."
+          optionLabel="name"
+        ></p-select>
+        <input pInputText formControlName="name" placeholder="Il manque..."/>
+        <p-button type="submit" [disabled]="createForm.invalid">Ajouter</p-button>
+      </p-inputgroup>
+
     </form>
     <spl-progress-bar [shown]="addItemLoading"/>
   </div>

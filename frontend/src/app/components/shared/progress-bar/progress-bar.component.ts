@@ -2,14 +2,13 @@ import {booleanAttribute, ChangeDetectionStrategy, Component, Input} from '@angu
 import {ProgressBarModule} from "primeng/progressbar";
 
 @Component({
-  selector: 'spl-progress-bar',
-  standalone: true,
-  imports: [
-    ProgressBarModule
-  ],
-  templateUrl: './progress-bar.component.html',
-  styleUrl: './progress-bar.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'spl-progress-bar',
+    imports: [
+        ProgressBarModule
+    ],
+    templateUrl: './progress-bar.component.html',
+    styleUrl: './progress-bar.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgressBarComponent {
 

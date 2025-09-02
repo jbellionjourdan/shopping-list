@@ -1,11 +1,13 @@
 <div class="pos-sticky">
   <div class="header-row">
     <h1>Catégories</h1>
-    <button pButton pRipple routerLink="/" text="true">Retour</button>
+    <p-button routerLink="/" text="true">Retour</p-button>
   </div>
-  <form [formGroup]="createForm" class="creation-form p-inputgroup" (ngSubmit)="createCategory()">
-    <input pInputText formControlName="name" placeholder="Nouvelle catégorie..."/>
-    <button pButton type="submit" [disabled]="createForm.invalid" pRipple>Ajouter</button>
+  <form [formGroup]="createForm" (ngSubmit)="createCategory()">
+    <p-inputgroup>
+      <input pInputText formControlName="name" placeholder="Nouvelle catégorie..."/>
+      <p-button type="submit" [disabled]="createForm.invalid">Ajouter</p-button>
+    </p-inputgroup>
   </form>
   <spl-progress-bar [shown]="createLoading"/>
 </div>
