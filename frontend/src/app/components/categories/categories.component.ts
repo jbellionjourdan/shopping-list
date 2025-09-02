@@ -3,7 +3,7 @@ import {CategoryFormModel, CategoryModel} from "../../models/category.model";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ConfirmationService, PrimeTemplate} from "primeng/api";
 import {InputTextModule} from 'primeng/inputtext';
-import {Button, ButtonDirective} from 'primeng/button';
+import {Button} from 'primeng/button';
 import {RippleModule} from 'primeng/ripple';
 import {TableModule} from 'primeng/table';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
@@ -20,7 +20,7 @@ type CategoryWithFormGroup = CategoryModel & { formGroup: FormGroup<CategoryForm
   selector: 'spl-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss'],
-  imports: [ReactiveFormsModule, InputTextModule, ButtonDirective, RippleModule, TableModule, PrimeTemplate, ConfirmDialogModule, SortCategoriesPipe, RouterLink, ProgressBarComponent, Button, InputGroup],
+  imports: [ReactiveFormsModule, InputTextModule, RippleModule, TableModule, PrimeTemplate, ConfirmDialogModule, SortCategoriesPipe, RouterLink, ProgressBarComponent, Button, InputGroup],
   providers: [ConfirmationService]
 })
 export class CategoriesComponent implements OnInit {
